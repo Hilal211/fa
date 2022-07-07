@@ -1,0 +1,36 @@
+.productdb{
+    width: 100%;
+}
+
+.productdb .search-icon{
+    margin-left: 18px;
+}
+.productdb .search{
+float: right;
+}
+
+.productdb .mt-7{
+    margin-top: 7px;
+}
+.productdb .filter{
+    width:1088px;
+    max-width: 90%;
+    border: 2px solid #262626;
+    padding: 13px 40px;
+}
+
+.productdb .input-text {
+    padding: 6px 22px;
+}
+.productdb .dropdown .flex{
+    width: 100%;
+}
+.productdb .w-30{
+    width: 30%;
+}
+.productdb .w-47{
+    width: 47%;
+}
+.productdb .w-100{
+    width: 100%;
+}

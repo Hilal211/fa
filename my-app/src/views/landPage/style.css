@@ -1,0 +1,30 @@
+.container-login {
+  width: 1200px;
+  max-width: 90%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login .mt-40 {
+  margin-top: 40px;
+}
+@media only screen and (max-width: 767px) {
+  .login .logo img{
+    width: 100px;
+  }
+  .login .logo_text img{
+    width: 150px;
+  }
+}
+@media only screen and (max-width: 1023px) {
+  .container-login{
+    width: 90%;
+    margin: auto;
+    max-width: initial;
+    position: initial;
+    transform: initial;
+  }
+}
