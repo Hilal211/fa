@@ -4,7 +4,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
- import Main from '@/layout/mainLayout'
+import Main from '@/layout/mainLayout'
 // views
 // import UserContext from '@/context/user';
 // import { useContext } from 'react';
@@ -13,21 +13,23 @@ import LandPage from '@/views/landPage/landPage.js'
 import Signin from '@/views/signIn/signIn.js'
 import SignUp from '@/views/signUp/signUp.js'
 import ProductDataBase from '@/views/product/productDataBase/productDataBase.js'
-import Test from '@/views/test/test.js'
+import MyStore from '@/views/store/myStore/myStore.js'
+import UpdateStore from '@/views/store/updateStore/updateStore.js'
 
 import { useEffect } from "react";
 function Webrouter() {
     return (
         <Router >
-        <Routes >
+            <Routes >
                 {/* <Route path="/" element={<Main><PublicPage children={<HomePage />} /></Main>} /> */}
                 <Route path="/" element={<><PublicPage children={<LandPage />} /></>} />
                 <Route path="/signin" element={<><PublicPage children={<Signin />} /></>} />
                 <Route path="/signup" element={<><PublicPage children={<SignUp />} /></>} />
-                <Route name="product" path="/product" element={<Main><PublicPage children={<ProductDataBase />} /></Main>} />
-                <Route name="test" path="/test" element={<Main><PublicPage children={<Test />} /></Main>} />
+                <Route name="product" path="/product" element={<Main props={{name:"product"}}><PublicPage children={<ProductDataBase />} /></Main>} />
+                <Route  path="/store/my-store" element={<Main props={{name:"store"}}><PublicPage children={<MyStore />} /></Main>} />
+                <Route  path="/store/update-store" element={<Main props={{name:"store"}}><PublicPage children={<UpdateStore />} /></Main>} />
 
-                </Routes>
+            </Routes>
         </Router>
     )
 }

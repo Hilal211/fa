@@ -51,12 +51,6 @@ function ProductDataBase() {
                 eventEmitter.emit('loading', false)
             })
             let formData = new FormData();
-            // formData.append('brandId',brandId)
-            // formData.append('categoryMasterId',categoryMasterId)
-            // formData.append('categoryId',categoryId)
-            // formData.append('subCategoryId',subCategoryId)
-            // formData.append('productName',productName)
-
             axios.getProducts(formData).then((res) => {
                 setProducts(res.data.data);
                 loaded++
@@ -90,11 +84,11 @@ function ProductDataBase() {
     const getProducts = () => {
         console.log(brandId, categoryId, categoryMasterId, productName)
         let formData = new FormData();
-        if(brandId != null)formData.append('brandId', brandId)
-        if(categoryMasterId != null) formData.append('categoryMasterId', categoryMasterId)
-        if(categoryId != null)  formData.append('categoryId', categoryId)
-        if(subCategoryId != null)  formData.append('subCategoryId', subCategoryId)
-        if(productName != null) formData.append('productName', productName)
+        if (brandId != null) formData.append('brandId', brandId)
+        if (categoryMasterId != null) formData.append('categoryMasterId', categoryMasterId)
+        if (categoryId != null) formData.append('categoryId', categoryId)
+        if (subCategoryId != null) formData.append('subCategoryId', subCategoryId)
+        if (productName != null) formData.append('productName', productName)
 
         axios.getProducts(formData).then((res) => {
             setProducts(res.data.data);
@@ -105,7 +99,7 @@ function ProductDataBase() {
 
     // table
     const columns = [
-        { id: 'masterCategory', label: 'MASTER CATEGORY', minWidth: 170 },
+        { id: 'masterCategory', label: 'MASTER CATEGORY', minWidth: 150, },
         { id: 'category', label: 'CATEGORY', minWidth: 100 },
         {
             id: 'subCategory',
@@ -140,7 +134,10 @@ function ProductDataBase() {
             label: 'Actions',
             minWidth: 170,
             align: 'left',
-            format: (value) => value.toFixed(2),
+            render: function(data, type) {
+                return type === 'display'? '<input class="chk-select" type="checkbox">' : '';
+              }
+            
         },
     ];
 
@@ -166,57 +163,53 @@ function ProductDataBase() {
 
 
     return (
-        <div className='productdb'>
+        <div className='productdb content'>
             <div className='flex justify-between filter'>
-                <div className="w-30">
-                    <div className='dropdown flex'>
-                        <div className='flex input-text align-i-center '>
-                            <div className='fs-18'>BRAND</div>
-                            <div className='line'></div>
+                <div className="w-41">
+
+                    <div className='flex  align-i-center dropdawn-parent'>
+                        <div className='fs-18'>BRAND</div>
+                        <div className='line'></div>
+                        <div className='dropdawn'>
                             <Autocomplete
-                                freeSolo
                                 options={brands}
                                 getOptionLabel={(option) => option.name}
                                 onChange={(event, value) => { (value != null) ? setBrandId(value.id) : setBrandId(null) }}
                                 renderInput={(params) => <TextField {...params} placeholder='Select' />}
                                 fullWidth
                             />
-
                         </div>
-                        <div className="box-arrow"><img src={arrowDown} alt="" /></div>
                     </div>
-                    <div className='dropdown flex mt-7'>
-                        <div className='flex input-text align-i-center '>
-                            <div className='fs-18'>MASTER CATEGORY</div>
-                            <div className='line'></div>
+
+                    <div className='flex align-i-center dropdawn-parent mt-7'>
+                        <div className='fs-18'>MASTER CATEGORY</div>
+                        <div className='line'></div>
+                        <div className='dropdawn'>
                             <Autocomplete
-                                freeSolo
                                 options={categoryMaster}
                                 getOptionLabel={(option) => option.name}
                                 onChange={(event, value) => { if (value != null) { setCategoryMasterId(value.id); getCategories(value.id) } else { setCategoryMasterId(null); setCategories([]) } }}
                                 renderInput={(params) => <TextField {...params} placeholder='Select' />}
                                 fullWidth
                             />
-
                         </div>
-                        <div className="box-arrow"><img src={arrowDown} alt="" /></div>
                     </div>
-                    <div className='dropdown flex mt-7'>
-                        <div className='flex input-text align-i-center '>
-                            <div className='fs-18'>CATEGORY</div>
-                            <div className='line'></div>
+
+
+                    <div className='flex  align-i-center dropdawn-parent mt-7'>
+                        <div className='fs-18'>CATEGORY</div>
+                        <div className='line'></div>
+                        <div className='dropdawn'>
                             <Autocomplete
-                                freeSolo
                                 options={categories}
                                 getOptionLabel={(option) => option.name}
                                 onChange={(event, value) => { value != null ? setCategoryId(value.id) : setCategoryId(null) }}
                                 renderInput={(params) => <TextField {...params} placeholder='Select' />}
                                 fullWidth
                             />
-
                         </div>
-                        <div className="box-arrow"><img src={arrowDown} alt="" /></div>
                     </div>
+
                 </div>
                 <div className='flex justify-between align-i-end flex-col w-47'>
                     <div className='flex input-text align-i-center w-100'>

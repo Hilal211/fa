@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { Grid } from "@mui/material";
+// import { useState, useContext } from "react";
+// import { Grid } from "@mui/material";
 // import UserContext from "@/context/user";
 // import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -7,28 +7,28 @@ import { useNavigate } from "react-router-dom";
 // import { Menu, MenuItem } from '@mui/material';
 // import MenuItem from '@mui/material/MenuItem';
 // import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import logo from '@/assets/images/logo-header.svg'
 import logoText from '@/assets/images/logo-text-header.svg'
 
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { useLocation } from "react-router-dom"
 import { styled } from '@mui/material/styles';
 
-const drawerWidth = 340;
+// const drawerWidth = 340;
 const Drawer = styled(MuiDrawer)(
   ({ theme, open }) => ({
-    width: drawerWidth,
+   
     flexShrink: 0,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box'
   }),
 );
-function Layout({ children }, prop) {
+function Layout({ children ,props} ) {
 
 
   // const { user } = useContext(UserContext);
@@ -38,14 +38,16 @@ function Layout({ children }, prop) {
 
   function Header() {
     const navigate = useNavigate();
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+    const location = useLocation()
+
+    // const [anchorEl, setAnchorEl] = useState(null);
+    // const open = Boolean(anchorEl);
+    // const handleClick = (event) => {
+    //   setAnchorEl(event.currentTarget);
+    // };
+    // const handleClose = () => {
+    //   setAnchorEl(null);
+    // };
     return (
       <div>
         {/* <MenuIcon
@@ -78,10 +80,10 @@ function Layout({ children }, prop) {
             <img src={logo} alt="logo" id="logo-header" />
             <img src={logoText} alt="logo-name" />
           </div>
-          <div className="flex links light">
+          <div className="flex links light align-i-center">
             <div onClick={(e) => { navigate('/') }}>DASHBOARD</div>
-            <div onClick={(e) => { navigate('/') }}>PRODUCT MASTER</div>
-            <div onClick={(e) => { navigate('/') }}>STORE</div>
+            <div onClick={(e) => { navigate('/product') }} className={location.pathname==='/product' ? 'selected' : ''}>PRODUCT MASTER</div>
+            <div onClick={(e) => { navigate('/store/my-store') }} className={location.pathname==='/store/my-store' ? 'selected' : ''}>STORE</div>
             <div onClick={(e) => { navigate('/') }}>CRM</div>
             <div onClick={(e) => { navigate('/') }}>PROMOTIONS</div>
             <div onClick={(e) => { navigate('/') }}>NEWS</div>
@@ -95,39 +97,43 @@ function Layout({ children }, prop) {
     );
   }
 
-  const SideBar = props => {
+  const SideBar = () => {
     const location = useLocation()
     const navigate = useNavigate();
     const items = {
-      "/product": [
-        { text: 'PRODUCT DATABASE', to: "/dashboard", onClick: () => navigate('/') },
-        { text: 'ADD PRODUCT', to: '/endpoints', onClick: () => navigate('/') },
-        { text: 'UPLOAD PRODUCTS', to: '/targets', onClick: () => navigate('/') },
-        { text: 'XML FEED', to: '/sources', onClick: () => navigate('/') },
+      "product": [
+        { text: 'PRODUCT DATABASE', to: "/product", onClick: () => navigate('/product') },
+        { text: 'ADD PRODUCT', to: '/', onClick: () => navigate('/') },
+        { text: 'UPLOAD PRODUCTS', to: '/', onClick: () => navigate('/') },
+        { text: 'XML FEED', to: '/', onClick: () => navigate('/') },
       ],
-      "/test": [
-        { text: 'PRODUCT DATABASE', to: "/dashboard", onClick: () => navigate('/') },
-        { text: 'ADD PRODUCT', to: '/endpoints', onClick: () => navigate('/') },
-        { text: 'UPLOAD PRODUCTS', to: '/targets', onClick: () => navigate('/') },
-        { text: 'XML FEED', to: '/sources', onClick: () => navigate('/') },
+      "store": [
+        { text: 'MY STORE', to: "/store/my-store", onClick: () => navigate('/store/my-store') },
+        { text: 'UPDATE STORE', to: '/store/update-store', onClick: () => navigate('/store/update-store') },
+        { text: 'ORDER MANAGEMENT', to: '/', onClick: () => navigate('/') },
+        { text: 'PROMOTIONS', to: '/', onClick: () => navigate('/') },
+        { text: 'PROFILE CATEGORIES', to: '/', onClick: () => navigate('/') },
+        { text: 'XML FEED', to: '/', onClick: () => navigate('/') },
+        { text: 'SMART CART', to: '/', onClick: () => navigate('/') },
+
       ]
     };
   
     return (
       <Drawer variant="permanent" open={true}>
         <List>
-          {items[location.pathname].map((item, index) => (
+          {items[props.name].map((item, index) => (
             <ListItemButton
               key={item.text}
               className={item.to === location.pathname ? 'selected' : ''}
               onClick={item.onClick}
               sx={{
-                minHeight: 48,
+                marginBottom: 6,
                 justifyContent: 'initial',
-                px: 2.5,
+               
               }}
             >
-              <ListItemText primary={item.text} sx={{ opacity: 1, textAlign: 'left', color: '#C3C3C3', marginBottom: 6, fontWeight: 300 }} />
+              <ListItemText primary={item.text} sx={{ opacity: 1, textAlign: 'left', color: '#C3C3C3', fontWeight: 300 }} />
             </ListItemButton>
           ))}
         </List>

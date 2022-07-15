@@ -65,10 +65,10 @@ function App() {
     },
     palette: {
       primary: {
-        main: '#FED931'
+        main: '#000'
       },
       secondary: {
-        main: '#279C3F'
+        main: '#fff'
       }
     }
   });

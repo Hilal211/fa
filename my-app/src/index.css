@@ -6,6 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+*,html,body{
+  box-sizing: border-box;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -16,7 +19,22 @@ code {
   --black:#000000;
   --gray:#C3C3C3;
   --white:#FFFFFF;
+  --gray2:#262626;
+  --gray3:#252525;
+  --gray4:#707070;
 }
+
+/* bg */
+.bg-second-gray{
+  background-color:var(--gray2) ;
+}
+.border-third-gray{
+  border: 2px solid var(--gray3);
+}
+.border-forth-gray{
+  border: 2px solid var(--gray4);
+}
+
 .container{
   width: 1600px;
   max-width: 90%;
@@ -68,6 +86,46 @@ header .links div:first-of-type{
 .dropdown .box-arrow{
   background-color: #262626;
   padding: 19px 12px 12px 12px;
+}
+.dropdawn{
+  width: -webkit-fill-available;
+}
+.dropdawn-parent{
+  border: #262626 2px solid !important;
+  padding-left: 24px;
+}
+.dropdawn-parent .line {
+  width: 3px;
+  height: 25px;
+  margin: 0 15px;
+  background-color: var(--gray);
+}
+
+.dropdawn .MuiIconButton-root{
+  background: #262626 !important;
+  border-radius: 0 !important;
+  padding: 17px 12px !important;
+  margin-right: -9px !important;
+  margin-top: -15px !important;
+  z-index: 9;
+}
+.dropdawn input{
+  color: white;
+}
+.MuiAutocomplete-root{
+  color:white;
+}
+
+.MuiAutocomplete-hasPopupIcon.css-eozd4h-MuiAutocomplete-root .MuiOutlinedInput-root
+{
+  padding: 0 !important;
+}
+.css-eozd4h-MuiAutocomplete-root .MuiAutocomplete-clearIndicator{
+  display: none !important;
+}
+
+.css-eozd4h-MuiAutocomplete-root .MuiOutlinedInput-root .MuiAutocomplete-input {
+  padding: 17px 53px 17px 6px !important;
 }
 
 /* input-text */
@@ -164,6 +222,7 @@ header .links div:first-of-type{
 .align-i-center {align-items: center;}
 .align-i-start {align-items: flex-start;}
 .align-i-end {	align-items: flex-end;}
+.align-i-stretch {	align-items: stretch;}
 .align-s-center {align-self: center;}
 .align-s-start {align-self: flex-start;}
 .align-s-end {align-self: flex-end;}
@@ -194,12 +253,24 @@ header .links div:first-of-type{
   left: 50%;
   transform: translate(-50%, -50%);
 }
+/* sideNav */
+.MuiDrawer-root{
+  width: 17%;
+}
+.content{
+  width: 83%;
+  margin-bottom: 50px;
+}
 
 /* table */
 /* table,.MuiTableContainer-root.css-41abqd-MuiTableContainer-root{
   overflow: hidden !important;
   height: 100% !important;
 } */
+.css-1fw5qro-MuiPaper-root{
+  border-radius: 0 !important;
+  background-color:transparent !important;
+}
 td,th{
   color: white !important;
   font-weight:300 !important;
@@ -214,12 +285,20 @@ th{
 }
 table,th{
   background-color: #000000 !important;
-  border: 1px solid #8B8B8B;
+  border-bottom: 1px solid #8B8B8B;
 }
+.css-1ex1afd-MuiTableCell-root,.css-y8ay40-MuiTableCell-root{border-bottom: none !important;}
+
 .MuiTablePagination-root{
   background-color: #000000 !important;
   color: white !important;
 
+}
+
+/* generale */
+.selected span,.selected{
+   font-weight: bold;
+   color: var(--white);
 }
 
 @media only screen and (max-width: 1517px) {
